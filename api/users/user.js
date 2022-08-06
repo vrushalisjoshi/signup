@@ -1,4 +1,3 @@
-
 module.exports = {
   signup: (req, res, next) => {
     try {
@@ -11,10 +10,11 @@ module.exports = {
         isSubscribe: !!req.body.isSubscribe,
       };
 
-      let message = `Hello ${user.firstName} ${user.lastName}, Thank you for signing up. Your account is now created. `;
-      if (user.isSubscribe) {
-        message += `You would be receiving our periodic newsletters to your email: ${user.email}`;
-      }
+      let message =
+        `Hello ${user.firstName} ${user.lastName}, Thank you for signing up. Your account is now created. ` +
+        (user.isSubscribe
+          ? `You would be receiving our periodic newsletters to your email: ${user.email}`
+          : ``);
 
       res.status(200).send(message);
     } catch (err) {
